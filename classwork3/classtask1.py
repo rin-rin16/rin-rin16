@@ -1,0 +1,5 @@
+a=list(input().split())
+b=set(a[0])
+c=set(a[1])
+d=set(a[2])
+print(d & b & c)
