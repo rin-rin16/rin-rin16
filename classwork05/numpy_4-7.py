@@ -1,0 +1,16 @@
+import numpy as np
+
+np.random.seed(1)
+list = np.random.rand(120)
+listfin = np.array(list).reshape(12, 10)
+print(listfin)
+print(np.mean(listfin, axis = 1))
+print(np.std(listfin, axis = 1))
+print(np.sum(listfin, axis = 1))
+print(np.mean(listfin, axis = 1))
+print(np.std(listfin, axis = 1))
+print(np.sum(listfin, axis = 1))
+print(np.min(listfin, axis = 0))
+print(np.max(listfin, axis = 0))
+print(np.argmin(listfin, axis = 1))
+print(np.argmax(listfin, axis = 1))
