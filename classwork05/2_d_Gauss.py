@@ -13,8 +13,6 @@ distrib, xed, yed = np.histogram2d(x, y, bins = (xed, yed))
 
 fig, axs = plt.subplots(1, 1)
 
-print([f"{x:1.2f}" for x in xed[::20]])
-
 axs.matshow(distrib)
 axs.set_xticklabels([50, 60, 70, 80, 90, 100, 110, 120, 130, 140])
 axs.set_yticklabels([50, 60, 70, 80, 90, 100, 110, 120, 130, 140])
