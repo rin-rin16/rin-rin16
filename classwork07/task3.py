@@ -20,29 +20,44 @@ avgagesurv = titanic.groupby(['sex']).agg({'survived': "mean"})                 
 print(avgagesurv, end= '\n \n \n')                                                                                          #4
 
 deltasq = titanic.groupby(['survived']).agg({'age': "std"})                                                                 #5
-print(deltasq.loc[1])                                                                                                       #5
+print(deltasq.loc[1], end='\n \n \n')                                                                                       #5
 
 survage = titanic.groupby(['age']).agg({'survived': "mean"})                                                                #6
 survage.plot()                                                                                                              #6
 plt.show()                                                                                                                  #6
 
-# Недоделанный пункт 7:
+titcount = titanic                                                                                                          #7
+titcount['count'] = 1                                                                                                       #7
+survhist = titcount.groupby(['age', 'sex']).agg({'survived': "mean", 'count': 'count'}).reset_index()                       #7
+survhist['countsurv'] = survhist['survived']*survhist['count']                                                              #7
+survhistmale = survhist[survhist['sex'] == 'male']                                                                          #7
+survhistfem = survhist[survhist['sex'] == 'female']                                                                         #7
+malecum = survhistmale.cumsum()                                                                                             #7
+femcum = survhistfem.cumsum()                                                                                               #7
+survhistmale['cumulative'] = malecum['countsurv']                                                                           #7
+survhistfem['cumulative'] = femcum['countsurv']                                                                             #7
+survhistmale['fins'] = survhistmale['cumulative'].apply(lambda x: x/93)                                                     #7
+survhistfem['fins'] = survhistfem['cumulative'].apply(lambda x: x/93)                                                       #7
+survhistmale.reset_index()                                                                                                  #7
+survhistfem.reset_index()                                                                                                   #7
+malehist = survhistmale[['age', 'fins']].copy()                                                                             #7
+femhist = survhistfem[['age', 'fins']].copy()                                                                               #7
+fig, axs = plt.subplots(2)                                                                                                  #7
+malehist.plot(x='age', y='fins', ax=axs[0], title= 'male', label='Fraction of survivals below this age')                    #7
+femhist.plot(x='age', y='fins', ax=axs[1], title= 'female', label='Fraction of survivals below this age')                   #7
+plt.legend()                                                                                                                #7
+plt.show()                                                                                                                  #7
 
-titcount = titanic
-titcount['count'] = 1
-survhist = titcount.groupby(['age', 'sex']).agg({'survived': "mean", 'count': 'count'}).reset_index()
-survhistmale = survhist[survhist['sex'] == 'male']
-print(survhistmale)
-survhistfem = survhist[survhist['sex'] == 'female']
-print(survhistfem)
-malecum = survhistmale.cumsum()
-print(malecum)
-survhistmale['cumulative'] = malecum['count']
-print(survhistmale)
-survhistmale['fin'] = survhistmale['cumulative'].apply(lambda x: x/453)
-print(survhistmale)
-malehist = survhistmale['age', 'fin'].copy()
-print(malehist)
+print(titanic['fare'].sum(), end='\n \n \n')                                                                                #8
 
-# Вроде можно не доделывать. Здесь короче просто создаёшь count с учётом процента survived, потом по нему
-# делаешь cumulative sum и получаешь данные для графика. Пункты 8-10 очень простые там всё очевидно
+#9  Здесь нет стобца с именем. Напишу код, представив, что он есть:                                                         #9
+#   kates = titanic[(titanic['name'] == 'Kate') or (titanic['name'] == 'Katerina') or (titanic['name'] == 'Ekaterina')]     #9
+
+#10 Аналогичная ситуация:                                                                                                  #10
+#   freqnames = titanic.groupby(['sex', 'names']).agg({'count' = ('names': 'count')})                                      #10
+#   malenames = freqnames[freqnames['sex'] = 'male']                                                                       #10
+#   femnames = freqnames[freqnames['sex'] = 'female']                                                                      #10
+#   malemostfreq = malenames[malenames['count'] in malenames.nlargest(5, 'count')]                                         #10
+#   femmostfreq = femnames[femnames['count'] in femnames.nlargest(5, 'count')]                                             #10
+#   print(malemostfreq)                                                                                                    #10
+#   print(femmostfreq)                                                                                                     #10
