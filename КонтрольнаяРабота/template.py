@@ -119,6 +119,8 @@ def task11(filename="infile.csv"):
     print(x, y, x_errcount, y_errcount)
 
     df['x_err'].fillna(value=df['x_err'].mean(), inplace=True)
+    df = df[df['y'].notna()]
+    df = df[df['y_err'].notna()]
 
 def task12(filename="video-games.csv"):
     # TODO: ...
