@@ -224,7 +224,7 @@ target1 = Target(screen)
 target2 = Target(screen)
 targets = [target1, target2]                                                                                            # Creating list of all targets
 
-Akey, Skey, Dkey, Wkey = False, False, False, False                                                                     # Setting initial values of those important parametrs to False
+Akey, Skey, Dkey, Wkey = False, False, False, False                                                                     # I will need those in 260 line of code
 
 textfont = pygame.font.SysFont('monospace', 27)                                                                         # Font for the score counter
 
