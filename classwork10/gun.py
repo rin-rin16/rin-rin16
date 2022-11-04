@@ -1,7 +1,6 @@
 import math
 from random import choice
 import random as rnd
-
 import pygame
 
 
