@@ -249,7 +249,7 @@ while not finished:
         if event.type == pygame.QUIT:
             finished = True
         elif event.type == pygame.MOUSEBUTTONDOWN:                                                                      # Targetting and charging up the gun
-            gun.fire2_start(event)
+            gun.fire2_start()
         elif event.type == pygame.MOUSEBUTTONUP:
             gun.fire2_end(event)
         elif event.type == pygame.MOUSEMOTION:
@@ -257,14 +257,7 @@ while not finished:
 
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:                                                                                 # I use those 4 parametrs to make the motion of
-                Akey = True                                                                                             # the gun continuous
-            if event.key == pygame.K_s:
-                Skey = True
-            if event.key == pygame.K_d:
-                Dkey = True
-            if event.key == pygame.K_w:
-                Wkey = True
-        elif event.type == pygame.KEYUP:
+                Akey = True                                                                                             # the gun continous
             if event.key == pygame.K_a:
                 Akey = False
             if event.key == pygame.K_s:
