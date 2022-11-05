@@ -257,7 +257,15 @@ while not finished:
 
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:                                                                                 # I use those 4 parametrs to make the motion of
-                Akey = True                                                                                             # the gun continous
+                Akey = True                                                                                              # the gun continous
+            if event.key == pygame.K_s:
+                Skey = True
+            if event.key == pygame.K_d:
+                Dkey = True
+            if event.key == pygame.K_w:
+                Wkey = True
+
+        elif event.type == pygame.KEYUP:
             if event.key == pygame.K_a:
                 Akey = False
             if event.key == pygame.K_s:
